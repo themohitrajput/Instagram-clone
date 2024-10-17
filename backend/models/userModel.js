@@ -76,9 +76,6 @@ userSchema.methods.comparePassword = async function(enteredPassword) {
 }
 
 userSchema.methods.generateToken = function() {
-    console.log('process.env.JWT_EXPIRE',process.env.JWT_EXPIRE)
-    console.log('process.env.JWT_SECRET',process.env.JWT_SECRET)
-    console.log('this._id',this._id)
     return jwt.sign({ id: this._id }, "U3YU23wef32BFE48t48br4tGERbvrtbrtb45n4ty848t4nerS", {
         expiresIn: '7d'
     });

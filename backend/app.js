@@ -1,16 +1,16 @@
 const express = require('express');
 const cookieParser = require('cookie-parser');
 const errorMiddleware = require('./middlewares/error');
-
+const path = require('path');
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
-app.use('/public', express.static('public'));
+app.use('/uploads', express.static(path.join(__dirname, '../uploads')));
+
 
 if (process.env.NODE_ENV != "production") {
-    console.log('sdfsddsd',process.env.NODE_ENV != "production")
     require('dotenv').config({ path: 'backend/config/config.env' });
 }
 

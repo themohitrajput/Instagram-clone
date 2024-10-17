@@ -66,7 +66,6 @@ const SignUp = () => {
             };
 
             reader.readAsDataURL(e.target.files[0]);
-            // console.log(e.target.files[0])
             setAvatar(e.target.files[0])
 
         } else {

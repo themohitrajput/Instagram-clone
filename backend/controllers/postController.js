@@ -6,17 +6,15 @@ const { deleteFile } = require('../utils/awsFunctions');
 
 // Create New Post
 exports.newPost = catchAsync(async (req, res, next) => {
-
     const postData = {
         caption: req.body.caption,
-        image: req.file.location,
+        image: req.file.path,
         postedBy: req.user._id
     }
 
     const post = await Post.create(postData);
-
     const user = await User.findById(req.user._id);
-    user.posts.push(post._id);
+    user.posts.push(post);
     await user.save();
 
     res.status(201).json({

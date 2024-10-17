@@ -74,7 +74,6 @@ const Profile = () => {
     }, [dispatch, error, params.username, followError, success, message]);
 
     useEffect(() => {
-        // console.log(user?.followers?.some((id) => id === loggedInUser._id))
         setFollow(user?.followers?.some((u) => u._id === loggedInUser._id))
     }, [user]);
 

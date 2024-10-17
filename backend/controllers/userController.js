@@ -27,7 +27,7 @@ exports.signupUser = catchAsync(async (req, res, next) => {
         email,
         username,
         password,
-        avatar: req.file.location
+        avatar: req.file.path
     })
 
     sendCookie(newUser, 201, res);
@@ -50,7 +50,6 @@ exports.loginUser = catchAsync(async (req, res, next) => {
     if (!isPasswordMatched) {
         return next(new ErrorHandler("Password doesn't match", 401));
     }
-    console.log(user.generateToken())
     sendCookie(user, 201, res);
 });
 
@@ -186,7 +185,7 @@ exports.updateProfile = catchAsync(async (req, res, next) => {
         const user = await User.findById(req.user._id);
 
         await deleteFile(user.avatar);
-        newUserData.avatar = req.file.location
+        newUserData.avatar = req.file.path
     }
 
     await User.findByIdAndUpdate(req.user._id, newUserData, {

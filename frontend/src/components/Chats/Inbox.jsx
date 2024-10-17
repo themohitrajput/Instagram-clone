@@ -77,7 +77,6 @@ const Inbox = () => {
     useEffect(() => {
         socket.current.emit("addUser", loggedInUser._id);
         socket.current.on("getUsers", users => {
-            // console.log(users);
             setIsOnline(users.some((u) => u.userId === userId));
         })
     }, [loggedInUser._id, userId])
